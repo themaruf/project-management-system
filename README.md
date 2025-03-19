@@ -1,4 +1,3 @@
-````markdown
 # Project Management System
 
 A full-stack MEAN application for managing projects and tasks.
@@ -83,13 +82,6 @@ export const environment = {
 
 - Frontend: http://localhost:4200
 - Backend API: http://localhost:3000/api
-
-## Default Credentials
-
-```yaml
-Email: test@example.com
-Password: password123
-```
 
 ## Troubleshooting
 
