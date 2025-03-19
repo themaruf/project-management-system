@@ -16,47 +16,44 @@ A full-stack MEAN application for managing projects and tasks.
 git clone https://github.com/themaruf/project-management-system.git
 cd project-management-system
 ```
-````
 
-````
-
-### 2. Backend Setup
-```bash
-cd backend
-npm install
-copy .env.example .env
-````
-
-### 3. Frontend Setup
-
-```bash
-cd ..\frontend
-npm install
-```
-
-## Running the Application
-
-1. Start MongoDB (in separate terminal):
+### 2. Start MongoDB (in separate terminal):
 
 ```bash
 mongod --dbpath="d:\data\db"
 ```
 
-2. Start Backend:
 
+### 3. Setup and Run Backend 
 ```bash
 cd backend
+npm install
+copy .env.example .env
 npm start
-```
+````
 
-3. Start Frontend:
-
+### 4. Setup and Run Frontend
+Open a new terminal
 ```bash
-cd ..\frontend
+cd frontend
+npm install
 ng serve
 ```
 
-## Environment Configuration
+
+## Access the Application
+
+- Frontend: http://localhost:4200
+- Backend API: http://localhost:3000/api
+
+## General Troubleshooting
+
+- CORS Errors : Ensure backend is running and .env CORS_ORIGIN matches frontend URL
+- Database Issues : Verify MongoDB is running with mongod --version
+- Installation Errors : Delete node_modules and run npm install again
+
+
+## Troubleshooting Environment Configuration
 
 Backend ( .env ):
 
@@ -77,14 +74,3 @@ export const environment = {
   apiUrl: 'http://localhost:3000/api',
 };
 ````
-
-## Access the Application
-
-- Frontend: http://localhost:4200
-- Backend API: http://localhost:3000/api
-
-## Troubleshooting
-
-- CORS Errors : Ensure backend is running and .env CORS_ORIGIN matches frontend URL
-- Database Issues : Verify MongoDB is running with mongod --version
-- Installation Errors : Delete node_modules and run npm install again
