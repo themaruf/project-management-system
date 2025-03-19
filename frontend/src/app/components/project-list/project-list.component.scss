@@ -1,0 +1,136 @@
+.project-list-container {
+  padding: 20px;
+
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+
+  table {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+
+  .status-badge {
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 0.8em;
+    text-transform: capitalize;
+
+    &.planning {
+      background-color: #e3f2fd;
+      color: #1565c0;
+    }
+    &.in-progress {
+      background-color: #fff3e0;
+      color: #ef6c00;
+    }
+    &.completed {
+      background-color: #e8f5e9;
+      color: #2e7d32;
+    }
+  }
+
+  .project-details {
+    margin-top: 20px;
+
+    mat-card {
+      position: relative;
+
+      .close-button {
+        position: absolute;
+        top: 8px;
+        right: 8px;
+      }
+    }
+
+    .tasks-section {
+      margin-top: 20px;
+    }
+  }
+}
+
+.description-cell {
+  max-width: 300px;
+  position: relative;
+  cursor: pointer;
+
+  ::ng-deep {
+    * {
+      display: inline;
+      margin: 0;
+      padding: 0;
+    }
+    
+    p, div, span {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 100%;
+    }
+  }
+}
+
+::ng-deep {
+  p {
+    margin: 0;
+  }
+
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+}
+
+.filters {
+  background: #f5f5f5;
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 24px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+
+  &-header {
+    border-bottom: 1px solid #eee;
+    margin-bottom: 16px;
+    padding-bottom: 8px;
+    
+    h3 {
+      margin: 0;
+      color: #3f51b5;
+      font-weight: 500;
+    }
+  }
+}
+
+.filter-group {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+  align-items: center;
+}
+
+.search-field, .status-filter {
+  width: 100%;
+  
+  .mat-form-field-wrapper {
+    padding-bottom: 0;
+  }
+}
+
+.mat-option {
+  &.status-option {
+    text-transform: capitalize;
+    padding: 8px 16px;
+    
+    &.planning { color: #ff9800; }
+    &.in-progress { color: #2196f3; }
+    &.completed { color: #4caf50; }
+  }
+}
+
+.all-status {
+  color: #666;
+  font-style: italic;
+}

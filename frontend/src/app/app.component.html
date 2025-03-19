@@ -1,0 +1,9 @@
+<mat-toolbar color="primary" *ngIf="authService.currentUserValue">
+  <span>Project Management</span>
+  <span class="spacer"></span>
+  <button mat-button routerLink="/dashboard">Dashboard</button>
+  <button mat-button routerLink="/projects">Projects</button>
+  <button mat-button (click)="logout()">Logout</button>
+</mat-toolbar>
+
+<router-outlet></router-outlet>

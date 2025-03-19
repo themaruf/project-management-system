@@ -1,0 +1,46 @@
+<div class="project-form-container">
+  <h2>{{ isEditMode ? "Edit" : "Create" }} Project</h2>
+
+  <form [formGroup]="projectForm" (ngSubmit)="onSubmit()">
+    <mat-form-field appearance="fill">
+      <mat-label>Title</mat-label>
+      <input matInput formControlName="title" required />
+      <mat-error *ngIf="projectForm.get('title')?.hasError('required')">
+        Title is required
+      </mat-error>
+    </mat-form-field>
+
+    <div class="editor-wrapper">
+      <label>Description</label>
+      <quill-editor
+        [styles]="{ height: '200px' }"
+        [modules]="quillConfig"
+        formControlName="description"
+      ></quill-editor>
+      <mat-error *ngIf="projectForm.get('description')?.hasError('required')">
+        Description is required
+      </mat-error>
+    </div>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Status</mat-label>
+      <mat-select formControlName="status" required>
+        <mat-option value="planning">Planning</mat-option>
+        <mat-option value="in-progress">In Progress</mat-option>
+        <mat-option value="completed">Completed</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <div class="form-actions">
+      <button mat-button type="button" routerLink="/projects">Back</button>
+      <button
+        mat-raised-button
+        color="primary"
+        type="submit"
+        [disabled]="!projectForm.valid"
+      >
+        {{ isEditMode ? "Update" : "Create" }} Project
+      </button>
+    </div>
+  </form>
+</div>

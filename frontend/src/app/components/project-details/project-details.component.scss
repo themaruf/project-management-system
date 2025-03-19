@@ -1,0 +1,51 @@
+.project-details-container {
+  padding: 20px;
+
+  mat-card {
+    position: relative;
+    
+    .back-button {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+    }
+  }
+
+  .status-badge {
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 0.8em;
+    text-transform: capitalize;
+
+    &.planning { background-color: #e3f2fd; color: #1565c0; }
+    &.in-progress { background-color: #fff3e0; color: #ef6c00; }
+    &.completed { background-color: #e8f5e9; color: #2e7d32; }
+  }
+
+  .tasks-section {
+    margin-top: 20px;
+  }
+
+  .description-content {
+    margin: 1rem 0;
+    padding: 1rem;
+    background-color: #f8f9fa;
+    border-radius: 4px;
+  
+    ::ng-deep {
+      p {
+        margin: 0.5rem 0;
+      }
+      
+      img {
+        max-width: 100%;
+        height: auto;
+      }
+      
+      ul, ol {
+        margin: 0.5rem 0;
+        padding-left: 2rem;
+      }
+    }
+  }
+}

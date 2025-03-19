@@ -1,0 +1,115 @@
+<div class="project-list-container">
+  <div class="header">
+    <h2>Projects</h2>
+    <button mat-raised-button color="primary" routerLink="/projects/new">
+      <mat-icon>add</mat-icon> New Project
+    </button>
+  </div>
+
+  <div class="filters">
+    <div class="filters-header">
+      <h3>Filter Projects</h3>
+    </div>
+
+    <div class="filter-group">
+      <mat-form-field appearance="outline" class="search-field">
+        <mat-label>Search Projects</mat-label>
+        <input
+          matInput
+          [(ngModel)]="searchTerm"
+          (keyup.enter)="onSearch()"
+          placeholder="Type project name or description..."
+        />
+        <mat-icon matSuffix (click)="onSearch()">search</mat-icon>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="status-filter">
+        <mat-label>Project Status</mat-label>
+        <mat-select
+          [(ngModel)]="statusFilter"
+          (selectionChange)="onStatusChange()"
+        >
+          <mat-option value="">
+            <span class="all-status">All Statuses</span>
+          </mat-option>
+          <mat-option *ngFor="let status of statusOptions" [value]="status">
+            <span class="status-option {{ status }}">{{
+              status | titlecase
+            }}</span>
+          </mat-option>
+        </mat-select>
+        <mat-icon matSuffix>arrow_drop_down</mat-icon>
+      </mat-form-field>
+    </div>
+  </div>
+
+  <table mat-table [dataSource]="projects" class="mat-elevation-z8">
+    <ng-container matColumnDef="title">
+      <th mat-header-cell *matHeaderCellDef>Title</th>
+      <td mat-cell *matCellDef="let project">{{ project.title }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="description">
+      <th mat-header-cell *matHeaderCellDef>Description</th>
+      <td mat-cell *matCellDef="let project">
+        <div class="description-cell" [matTooltip]="project.description">
+          <div
+            [innerHTML]="
+              (project.description | slice : 0 : 50) + '...' | safeHtml
+            "
+          ></div>
+        </div>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="status">
+      <th mat-header-cell *matHeaderCellDef>Status</th>
+      <td mat-cell *matCellDef="let project">
+        <span class="status-badge" [class]="project.status">{{
+          project.status
+        }}</span>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef>Actions</th>
+      <td mat-cell *matCellDef="let project">
+        <button
+          mat-icon-button
+          color="primary"
+          [routerLink]="['/projects', project._id]"
+          matTooltip="View Details"
+        >
+          <mat-icon>visibility</mat-icon>
+        </button>
+        <button
+          mat-icon-button
+          [routerLink]="['/projects/edit', project._id]"
+          matTooltip="Edit"
+        >
+          <mat-icon>edit</mat-icon>
+        </button>
+        <button
+          mat-icon-button
+          color="warn"
+          (click)="deleteProject(project._id)"
+          matTooltip="Delete"
+        >
+          <mat-icon>delete</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  </table>
+
+  <mat-paginator
+    [length]="totalProjects"
+    [pageSize]="pageSize"
+    [pageSizeOptions]="[5, 10, 25, 50]"
+    (page)="onPageChange($event)"
+    aria-label="Select page"
+  >
+  </mat-paginator>
+</div>

@@ -1,0 +1,19 @@
+<div class="project-details-container" *ngIf="project">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>{{project.title}}</mat-card-title>
+      <button mat-icon-button (click)="goBack()" class="back-button">
+        <mat-icon>arrow_back</mat-icon>
+      </button>
+    </mat-card-header>
+    <mat-card-content>
+      <p><strong>Description:</strong></p>
+      <div class="description-content" [innerHTML]="project.description | safeHtml"></div>
+      <p><strong>Status:</strong> <span class="status-badge" [class]="project.status">{{project.status}}</span></p>
+      
+      <div class="tasks-section">
+        <app-task-list [projectId]="project._id"></app-task-list>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>
